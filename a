@@ -1,0 +1,76 @@
+Let's built a character sheet generator for a Fallout-style role-playing game!
+To get started, let's get all our files in the same place. You should have the following.
+    1. A copy of this project file called RPGCharacterCreator.py.
+    2. The main.py file that came with this project file.
+    3. A copy of the completed Python Project 2 file called BagOfDice.py
+IT IS ABSOLUTELY ESSENTIAL THAT THESE FILES BE IN THE SAME FOLDER AND HAVE THESE EXACT NAMES!
+
+Above "import random", import Die and DiceBag from BagOfDice
+Below these instruction, make a class called CharacterGenerator.
+Copy and paste this dictionary into CharacterGenerator's __init__ method. It should be the first member listed.
+self.governingSpecial = {
+    "barter": "charisma",
+    "energyweapons": "intelligence",
+    "explosives": "perception",
+    "guns": "agility",
+    "lockpick": "perception",
+    "medicine": "intelligence",
+    "meleeweapons": "strength",
+    "repair": "endurance",
+    "science": "intelligence",
+    "sneak": "agility",
+    "speech": "charisma",
+    "survival": "endurance",
+    "unarmed": "strength",
+}
+
+This class must also contain the following instance member variables.
+dice: A DiceBag object. This object is passed into __init__.
+name: A string initialized to "Courier".
+age: An integer initialized to 18.
+gender: A string initialized as empty. For simplicity, this can only be M, F, or O. We'll handle that in buildCharacter below.
+special: A dictionary with keys for strength, perception, endurance, charisma, intelligence, agaility, luck, all initialized to 1.
+skills: A dictionary with keys that match the governingSpecial dictionary. All of their values are initialized to 5.
+    Copy the keys from governingSpecial. Don't list them all again.
+attributes: A dictionary with keys for hitpoints, actionpoints, carryweight, radiationresist, compassrange, and movespeed, all initialized to 1.
+
+Next, we will create two methods as follows.
+
+buildCharacter - This will modify our member variables as follows.
+    1. Prompt the user to enter a name.
+        If name is "Arnold", set strenght to 10.
+        If name is "Lucky", set luck to 10.
+    2. Characters are given 33 points to assign to their SPECIALs. Write code that assigns these points randomly.
+        SPECIALs may NOT exceed a value of 10 at this stage.
+    3. Set age to a random number from 18 to 65, inclusive at both bounds.
+        If age is less than 25, increase agility by 2.
+        If age is greater than or equal 25 and less than 40, increase perception and endurance by 1.
+        If age is greater than or equal to 40, increase intelligence and charisma by 1.
+    4. Prompt the user to enter gender as either "M", "F", or "O". Cast their input to uppercase before checking it.
+        If male, increase strength and decrease agility by 1.
+        If female, increase agility and decrease strength by 1.
+        If other, do not change anything.
+        If the user enters anything besides these three characters, they must re-enter their choice.
+            Hint: Create a list of valid inputs to make error checking simpler.
+    5. Increase each skill by 2 times their governing SPECIAL + half their luck rounded down.
+    6. Set attributes as follows.
+        hitpoints - One D100 roll for every point of endurance + one D20 for every point of luck.
+        actionpoints - One D10 roll for every point of agility.
+        carryweight - 100 + one D20 roll for every point of strength.
+        radiationresist - One D2 roll for every point of endurance.
+        compassrange - 100 + one D6 roll for every point of perception + one D4 roll for every point of intelligence.
+        movespeed - Half of one D50 roll for every point of agility, rounded down to the nearest integer.
+
+__str__ - Returns a string of the complete character build. Format it as you see fit, as long as it is readable.
+    You will need for loops for this. DO NOT PRINT EVERYTHING EXPLICITLY BY NAME!
+
+Now, open main.py and do the following.
+    1. Import Die and DiceBag from BagOfDice and CharacterGenerator from RPGCharacterCreator.
+    2. Create a DiceBag object with 2, 4, 6, 10, 20, 50, and 100 sided dice.
+    3. Create a CharacterGenerator object; pass in your created DiceBag object.
+    4. Call your CharacterGenerator's buildCharacter method.
+    5. Print the object to the terminal.
+
+Lastly, run main.py. Save a screenshot showing your code works. This step is worth the remaining 60 points not included in your class definition.
+Compress this file, BagOfDice.py, main.py, and your screenshot into a ZiP folder and submit on Canvas.
+"""
